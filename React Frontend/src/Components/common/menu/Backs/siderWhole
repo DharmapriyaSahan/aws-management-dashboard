@@ -1,0 +1,82 @@
+import React from 'react';
+// import { Menu, Icon, Button } from 'antd';
+import { Link } from 'react-router-dom';
+import { Layout, Menu, Icon } from 'antd';
+import Instances from '../../Instances/Instances';
+import { Route, Router, Switch } from 'react-router-dom';
+
+const SubMenu = Menu.SubMenu;
+const MenuItemGroup = Menu.ItemGroup;
+
+const { Header, Sider, Content } = Layout;
+
+class SiderBar extends React.Component {
+  state = {
+    collapsed: false,
+  };
+
+  toggle = () => {
+    this.setState({
+      collapsed: !this.state.collapsed,
+    });
+  }
+
+  render() {
+    return (
+      <Layout>
+        <Sider
+          trigger={null}
+          collapsible
+          collapsed={this.state.collapsed}
+          className="centered-label"
+        >
+          {/* <div className="logo" /> */}
+          <Menu theme="dark" mode="inline" defaultSelectedKeys={['1']}>
+            
+              <MenuItemGroup key="g1" title="Instances">
+                <Menu.Item key="1">
+                  <Icon type="user" />
+
+                  <span>Prod</span>
+                  <Link to="/instances" />
+                </Menu.Item>
+              </MenuItemGroup>
+         
+            {/* <Menu.Item key="2">
+              <Icon type="video-camera" />
+              <span>nav 2</span>
+            </Menu.Item>
+            <Menu.Item key="3">
+              <Icon type="upload" />
+              <span>nav 3</span>
+            </Menu.Item> */}
+          </Menu>
+        </Sider>
+        <Layout>
+          
+            <Icon
+              // className="trigger"
+              type={this.state.collapsed ? 'menu-unfold' : 'menu-fold'}
+              onClick={this.toggle}
+              style={{display:"flex", float: "left"}}
+            />
+         
+          <Content style={{
+            margin: '24px 16px', padding: 24, background: '#fff', minHeight: 280, paddingBottom: "40%"
+          }}
+          >
+            <Switch>
+              {/* <Route exact path='/home' component={Home} /> */}
+              {/* <Route exact path='/mycours' component={Mycours} />
+            <Route exact path='/Assigment' component={Assigment} />
+            <Route exact path='/Allcourses' component={Allcourses} />
+            <Route exact path='/Blog' component={Blog} /> */}
+              <Route exact path='/instances' component={Instances} />
+            </Switch>
+          </Content>
+        </Layout>
+      </Layout>
+    );
+  }
+}
+export default SiderBar;
